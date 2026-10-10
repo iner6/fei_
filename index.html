@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>高&薯条 · 本地编辑器</title><link rel="stylesheet" href="editor.css"></head>
+<body>
+  <header class="topbar"><div class="brand">高 <i>&</i> 薯条 <span>本地编辑器</span></div><div class="save-state" data-save-state>已储存在此装置</div></header>
+  <main class="shell">
+    <aside class="sidebar"><p class="kicker">LOCAL MEMOIR STUDIO</p><h1>回忆管理</h1><p>内容只保存在这个浏览器。导出后上传到 GitHub 才会公开。</p>
+      <button class="primary" type="button" data-new>＋ 新增一篇回忆</button>
+      <nav><button class="active" data-view="memories">回忆章节</button><button data-view="music">背景音乐</button><button data-view="publish">导出与备份</button></nav>
+    </aside>
+    <section class="content">
+      <div class="view" data-panel="memories"><header class="view-head"><div><p class="kicker">CHAPTERS</p><h2>回忆章节</h2></div><span data-stats>0 篇</span></header><div class="memory-list" data-list></div></div>
+      <div class="view" data-panel="editor" hidden>
+        <header class="view-head"><div><p class="kicker">CHAPTER EDITOR</p><h2 data-editor-title>新增回忆</h2></div><button class="text-button" type="button" data-back>← 返回列表</button></header>
+        <form data-form>
+          <input type="hidden" name="id"><section class="card"><h3><span>01</span>故事资料</h3><div class="grid">
+            <label class="wide">剧本名称<input name="title" required maxlength="180"></label><label>游戏日期<input type="date" name="date"></label><label>标签<input name="tags" placeholder="悬疑，欢乐，纪念日"></label>
+            <label>高扮演的角色<input name="roleMe"></label><label>薯条扮演的角色<input name="rolePartner"></label><label>状态<select name="status"><option value="draft">草稿</option><option value="published">发布</option></select></label>
+            <label class="check wide"><input type="checkbox" name="special">设为特殊纪念章节</label>
+          </div></section>
+          <section class="card"><h3><span>02</span>想留下的话</h3><label>回忆摘要<textarea name="summary" rows="4"></textarea></label><label>完整回忆<textarea name="body" rows="9"></textarea></label><label>印象深刻的对话<textarea name="dialogue" rows="5"></textarea></label></section>
+          <section class="card"><h3><span>03</span>故事截图</h3><div class="image-list" data-images></div><label class="dropzone"><input type="file" data-image-input accept="image/jpeg,image/png,image/webp" multiple><b>＋ 选择截图</b><small>支持多张图片；可调整顺序或删除</small></label></section>
+          <div class="form-actions"><button class="ghost" type="button" data-preview>预览</button><div><button class="danger" type="button" data-delete hidden>删除</button><button class="primary" type="submit">保存到此装置</button></div></div>
+        </form>
+      </div>
+      <div class="view" data-panel="music" hidden><header class="view-head"><div><p class="kicker">SOUNDTRACKS</p><h2>背景音乐</h2></div></header>
+        <form class="music-form" data-music-form><label>曲目名称<input name="name" required></label><label>作者 / 备注<input name="artist"></label><label>音频文件<input type="file" name="audio" accept="audio/*" required></label><label class="check"><input type="checkbox" name="isDefault">设为默认</label><button class="primary" type="submit">加入音乐</button></form><div class="track-list" data-tracks></div>
+      </div>
+      <div class="view" data-panel="publish" hidden><header class="view-head"><div><p class="kicker">EXPORT & BACKUP</p><h2>导出与备份</h2></div></header>
+        <div class="export-grid"><section class="card"><h3>发布到 GitHub Pages</h3><p>导出更新包，解压后将其中的 <code>data</code> 和 <code>media</code> 文件夹覆盖到网站文件夹，再上传 GitHub。</p><button class="primary" type="button" data-export-site>导出网站更新包 .zip</button></section>
+        <section class="card"><h3>编辑资料备份</h3><p>备份包含草稿、截图和音乐。更换装置或清除浏览器前，请先下载备份。</p><button class="ghost" type="button" data-export-backup>下载完整备份 .memoir</button><label class="import-button">导入备份<input type="file" data-import accept=".memoir,application/json"></label></section></div>
+      </div>
+    </section>
+  </main>
+  <dialog data-preview-dialog><button type="button" data-close-preview>关闭 ×</button><article data-preview-content></article></dialog>
+  <div class="toast" data-toast></div><script src="editor.js"></script>
+</body></html>
